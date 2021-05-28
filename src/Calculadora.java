@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Calculadora {
 	
 	//public static double resultado = 0;
+	public static double valor1 = 0, valor2 = 0;
+	public static double resultadoSoma, resultadoSub, resultadoDiv, resultadoMult;
 
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
-		double valor1 = 0, valor2=0;
-		double soma, subtracao, divisao, multiplicacao;
 		int opcao = 0;
 		
 		while (opcao!=6) {
@@ -18,34 +18,21 @@ public class Calculadora {
 			
 			switch(opcao) {
 			case 1:
-				System.out.println("\n\nDigite o 1º valor:");
-				valor1 = leitor.nextDouble();
-				System.out.println("\n\nDigite o 2º valor:");
-				valor2 = leitor.nextDouble();
-				
-				System.out.println("Os valores " + valor1 + " e " + valor2 + " foram armazenados\n\n");
+				processarDigitacao(leitor);
 				
 				break;
 			case 2:
-				System.out.println("\n\nRealizando a soma entre " + valor1 + " e " + valor2);
-				double resultadoSoma = valor1 + valor2;
-				imprimirResultado(resultadoSoma);
+				processarSoma();
 				
 				break;
 			case 3:
-				System.out.println("\n\nRealizando a subtração entre " + valor1 + " e " + valor2);
-				double resultado = valor1 - valor2;
-				imprimirResultado(resultado);
+				processarSubtracao();
 				break;
 			case 4:
-				System.out.println("\n\nRealizando a divisão entre " + valor1 + " e " + valor2);
-				double result = dividir(valor1, valor2);
-				imprimirResultado(result);
+				processarDivisao();
 				break;
 			case 5:
-				System.out.println("\n\nRealizando a multiplicação entre " + valor1 + " e " + valor2);
-				double resultadoMultiplicacao = valor1 * valor2;
-				imprimirResultado(resultadoMultiplicacao);
+				processarMultiplicacao();
 				break;
 			case 6:
 				System.out.println("Saindo do sistema");
@@ -57,12 +44,63 @@ public class Calculadora {
 		
 
 	}
+
+	public static void processarDigitacao(Scanner leitor) {
+		System.out.println("\n\nDigite o 1º valor:");
+		valor1 = leitor.nextDouble();
+		System.out.println("\n\nDigite o 2º valor:");
+		valor2 = leitor.nextDouble();
+		
+		System.out.println("Os valores " + valor1 + " e " + valor2 + " foram armazenados\n\n");
+	}
+
+	public static void processarMultiplicacao() {
+		System.out.println("\n\nRealizando a multiplicação entre " + valor1 + " e " + valor2);
+		resultadoMult = multiplicar(valor1, valor2);
+		imprimirResultado(resultadoMult);
+	}
+
+	public static void processarDivisao() {
+		System.out.println("\n\nRealizando a divisão entre " + valor1 + " e " + valor2);
+		resultadoDiv = dividir(valor1, valor2);
+		imprimirResultado(resultadoDiv);
+	}
+
+	public static void processarSubtracao() {
+		System.out.println("\n\nRealizando a subtração entre " + valor1 + " e " + valor2);
+		resultadoSub = subtrair(valor1, valor2);
+		imprimirResultado(resultadoSub);
+	}
 	
 	//modificador de acesso -  static - tipoRetorno - nomeMetodo
 	
+	public static void processarSoma() {
+		System.out.println("\n\nRealizando a soma entre " + valor1 + " e " + valor2);
+		resultadoSoma = somar(valor1, valor2);
+		imprimirResultado(resultadoSoma);
+		
+	}
+	
+	public static double somar(double valor1, double valor2) {
+		return valor1 + valor2;
+	}
+	
+	public static double subtrair(double valor1, double valor2) {
+		return valor1 - valor2;
+	}
+	
+	public static double multiplicar(double valor1, double valor2) {
+		return valor1 * valor2;
+	}
+	
 	public static double dividir(double denominador, double divisor) {
-		double resultado = denominador / divisor;
-		return resultado;
+		if (divisor == 0) {
+			return 0;
+		}else {
+			double resultado = denominador/divisor;
+			return resultado;
+		}
+
 	}
 	
 	public static void imprimirResultado(double valorResultado) {
