@@ -39,8 +39,8 @@ public class Calculadora {
 				break;
 			case 4:
 				System.out.println("\n\nRealizando a divisão entre " + valor1 + " e " + valor2);
-				double resultadoDivisao = valor1 / valor2;
-				imprimirResultado(resultadoDivisao);
+				double result = dividir(valor1, valor2);
+				imprimirResultado(result);
 				break;
 			case 5:
 				System.out.println("\n\nRealizando a multiplicação entre " + valor1 + " e " + valor2);
@@ -60,14 +60,18 @@ public class Calculadora {
 	
 	//modificador de acesso -  static - tipoRetorno - nomeMetodo
 	
+	public static double dividir(double denominador, double divisor) {
+		double resultado = denominador / divisor;
+		return resultado;
+	}
+	
 	public static void imprimirResultado(double valorResultado) {
 		if (valorResultado > 0 ) {
 			System.out.println("O resultado é " + valorResultado + "!\n\n");			
 		}else {
 			System.out.println("Erro! Não foi possível efetuar o cálculo");
 		}
-		
-		
+				
 	}
 	
 	public static void exibirMenu() {
